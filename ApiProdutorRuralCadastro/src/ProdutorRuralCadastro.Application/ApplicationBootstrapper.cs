@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using ProdutorRuralCadastro.Application.Services;
 using ProdutorRuralCadastro.Application.Services.Interfaces;
+using ProdutorRuralCadastro.Application.Validators;
 
 namespace ProdutorRuralCadastro.Application
 {
@@ -8,7 +10,13 @@ namespace ProdutorRuralCadastro.Application
     {
         public static void Register(IServiceCollection services)
         {
-            services.AddTransient<IProdutorRuralCadastroService, ProdutorRuralCadastroService>();
+            // Services
+            services.AddScoped<ICulturaService, CulturaService>();
+            services.AddScoped<IPropriedadeService, PropriedadeService>();
+            services.AddScoped<ITalhaoService, TalhaoService>();
+
+            // FluentValidation - registra todos os validators do assembly
+            services.AddValidatorsFromAssemblyContaining<PropriedadeCreateRequestValidator>();
         }
     }
 }
