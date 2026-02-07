@@ -10,14 +10,14 @@ namespace ProdutorRuralCadastro.Api.Extensions.Tracing
         private static readonly ActivitySource ActivitySource = new("ApiProdutorRuralCadastro");
 
         /// <summary>
-        /// Configura OpenTelemetry Distributed Tracing para Games API
+        /// Configura OpenTelemetry Distributed Tracing para AgroCadastro API
         /// </summary>
         /// <param name="services">Coleção de serviços</param>
         /// <param name="configuration">Configuração da aplicação</param>
         /// <returns>Coleção de serviços configurada</returns>
         public static IServiceCollection AddDistributedTracing(this IServiceCollection services, IConfiguration configuration)
         {
-            var serviceName = "fiap-games-api";
+            var serviceName = "agro-cadastro-api";
             var serviceVersion = "1.0.0";
 
             try
@@ -35,7 +35,7 @@ namespace ProdutorRuralCadastro.Api.Extensions.Tracing
                                     ["deployment.environment"] = configuration["ASPNETCORE_ENVIRONMENT"] ?? "Development"
                                 }))
                             .AddSource("FiapPosTech.*")
-                            .AddSource("Games.*")
+                            .AddSource("AgroCadastro.*")
                             .AddAspNetCoreInstrumentation(options =>
                             {
                                 // Filtrar health checks e métricas
@@ -65,7 +65,7 @@ namespace ProdutorRuralCadastro.Api.Extensions.Tracing
                 // Registrar ActivitySource para injeção de dependência
                 services.AddSingleton(ActivitySource);
 
-                Console.WriteLine("✅ OpenTelemetry configurado com sucesso para Games API");
+                Console.WriteLine("✅ OpenTelemetry configurado com sucesso para AgroCadastro API");
             }
             catch (Exception ex)
             {

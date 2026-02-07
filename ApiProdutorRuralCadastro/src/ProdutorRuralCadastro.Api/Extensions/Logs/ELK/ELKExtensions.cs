@@ -13,7 +13,7 @@ namespace ProdutorRuralCadastro.Api.Extensions.Logs.ELK
     public static class ELKExtensions
     {
         /// <summary>
-        /// Configura ELK Stack integration para o microserviço Games API
+        /// Configura ELK Stack integration para o microserviço AgroCadastro API
         /// </summary>
         /// <param name="services">A coleção de serviços</param>
         /// <param name="configuration">Configuração da aplicação</param>

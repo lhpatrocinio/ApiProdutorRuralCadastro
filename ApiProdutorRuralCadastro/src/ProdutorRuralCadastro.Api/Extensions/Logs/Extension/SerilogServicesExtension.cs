@@ -13,8 +13,8 @@ namespace ProdutorRuralCadastro.Api.Extensions.Logs.Extension
     {
         public static WebApplicationBuilder AddSerilogConfiguration(this WebApplicationBuilder builder)
         {
-            var serviceName = "Games.Api";
-            var servicePort = 7000;
+            var serviceName = "AgroCadastro.Api";
+            var servicePort = 5001;
 
             builder.Host.UseSerilog((context, logger) =>
             {
