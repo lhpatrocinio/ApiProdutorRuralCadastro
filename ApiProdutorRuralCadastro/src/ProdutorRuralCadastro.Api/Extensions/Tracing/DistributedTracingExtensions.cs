@@ -30,11 +30,11 @@ namespace ProdutorRuralCadastro.Api.Extensions.Tracing
                                 .AddService(serviceName, serviceVersion)
                                 .AddAttributes(new Dictionary<string, object>
                                 {
-                                    ["service.namespace"] = "fiap.postech",
+                                    ["service.namespace"] = "agro.solutions",
                                     ["service.instance.id"] = Environment.MachineName,
                                     ["deployment.environment"] = configuration["ASPNETCORE_ENVIRONMENT"] ?? "Development"
                                 }))
-                            .AddSource("FiapPosTech.*")
+                            .AddSource("AgroSolutions.*")
                             .AddSource("AgroCadastro.*")
                             .AddAspNetCoreInstrumentation(options =>
                             {

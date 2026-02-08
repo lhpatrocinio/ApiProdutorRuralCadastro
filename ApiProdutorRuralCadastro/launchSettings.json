@@ -7,7 +7,7 @@
             "composeLaunchServiceName": "agro-cadastro-api",
             "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
             "serviceActions": {
-                "core.postech8nett.api": "StartDebugging",
+                "agro-cadastro-api": "StartDebugging",
                 "sqlserver": "StartWithoutDebugging"
             }
         }
