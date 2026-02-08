@@ -7,13 +7,13 @@ namespace ProdutorRuralCadastro.Infrastructure.Messaging.Events;
 public record AlertCreatedEvent
 {
     public Guid AlertaId { get; init; }
+    public Guid ProdutorId { get; init; }
     public Guid TalhaoId { get; init; }
-    public int TipoAlerta { get; init; }  // 1=Seca, 2=Temperatura, 3=Precipitacao
-    public int Severidade { get; init; }  // 1=Baixa, 2=Media, 3=Alta
+    public string TipoAlerta { get; init; } = string.Empty;  // Ex: "Umidade", "Temperatura", etc
+    public string Severidade { get; init; } = string.Empty;  // Ex: "Baixa", "Media", "Alta"
     public string Titulo { get; init; } = string.Empty;
     public string? Mensagem { get; init; }
-    public decimal? ValorDetectado { get; init; }
-    public decimal? ValorLimite { get; init; }
+    public decimal? ValorLeitura { get; init; }
     public DateTime CreatedAt { get; init; }
 }
 
@@ -23,24 +23,30 @@ public record AlertCreatedEvent
 public static class AlertaSeveridadeMapper
 {
     /// <summary>
-    /// Converte severidade do alerta para status do talhão
+    /// Converte severidade do alerta (string) para status do talhão (int)
     /// </summary>
-    public static int ToTalhaoStatus(int severidade) => severidade switch
+    public static int ToTalhaoStatus(string severidade) => severidade?.ToLower() switch
     {
-        1 => 0, // Baixa -> Normal
-        2 => 1, // Média -> Alerta
-        3 => 2, // Alta -> Crítico
+        "baixa" => 0, // Baixa -> Normal
+        "media" or "média" => 1, // Média -> Alerta
+        "alta" => 2, // Alta -> Crítico
         _ => 0
     };
 
-    public static string ToStatusDescricao(int tipoAlerta, int severidade) => (tipoAlerta, severidade) switch
+    public static string ToStatusDescricao(string tipoAlerta, string severidade)
     {
-        (1, 2) => "Alerta - Risco de Seca",
-        (1, 3) => "Crítico - Seca Detectada",
-        (2, 2) => "Alerta - Temperatura Anormal",
-        (2, 3) => "Crítico - Stress Térmico",
-        (3, 2) => "Alerta - Precipitação Anormal",
-        (3, 3) => "Crítico - Risco de Inundação",
-        _ => "Normal"
-    };
+        var tipo = tipoAlerta?.ToLower() ?? "";
+        var sev = severidade?.ToLower() ?? "";
+        
+        return (tipo, sev) switch
+        {
+            ("umidade" or "umidade_solo", "media" or "média") => "Alerta - Risco de Seca",
+            ("umidade" or "umidade_solo", "alta") => "Crítico - Seca Detectada",
+            ("temperatura", "media" or "média") => "Alerta - Temperatura Anormal",
+            ("temperatura", "alta") => "Crítico - Stress Térmico",
+            ("precipitacao", "media" or "média") => "Alerta - Precipitação Anormal",
+            ("precipitacao", "alta") => "Crítico - Risco de Inundação",
+            _ => "Normal"
+        };
+    }
 }
