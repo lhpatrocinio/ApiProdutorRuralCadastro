@@ -31,7 +31,7 @@ jobs:
         run: dotnet build  ApiProdutorRuralCadastro/src/ProdutorRuralCadastro.Api/ProdutorRuralCadastro.Api.csproj --configuration Release --no-restore
 
       - name: Executar testes com cobertura
-        run: dotnet test ApiProdutorRuralCadastro/tests/Users.Test/ProdutorRuralCadastro.Test.csproj --configuration Release --collect:"XPlat Code Coverage" --results-directory ./TestResults
+        run: dotnet test ApiProdutorRuralCadastro/tests/ProdutorRuralCadastro.Tests/ProdutorRuralCadastro.Tests.csproj --configuration Release --collect:"XPlat Code Coverage" --results-directory ./TestResults
 
       - name: Publicar cobertura com Coverlet (opcional)
         uses: danielpalme/ReportGenerator-GitHub-Action@5.3.0
