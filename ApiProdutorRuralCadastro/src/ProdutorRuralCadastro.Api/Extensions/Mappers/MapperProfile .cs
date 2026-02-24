@@ -54,11 +54,11 @@ namespace ProdutorRuralCadastro.Api.Extensions.Mappers
                 .ForMember(dest => dest.StatusDescricao, opt => opt.Ignore());
 
             CreateMap<Talhao, TalhaoResponse>()
-                .ForMember(dest => dest.StatusDescricao, opt => opt.MapFrom(src => 
+                .ForMember(dest => dest.StatusDescricao, opt => opt.MapFrom(src =>
                     string.IsNullOrEmpty(src.StatusDescricao) ? src.GetStatusDescricao() : src.StatusDescricao));
 
             CreateMap<Talhao, TalhaoDetailResponse>()
-                .ForMember(dest => dest.StatusDescricao, opt => opt.MapFrom(src => 
+                .ForMember(dest => dest.StatusDescricao, opt => opt.MapFrom(src =>
                     string.IsNullOrEmpty(src.StatusDescricao) ? src.GetStatusDescricao() : src.StatusDescricao))
                 .ForMember(dest => dest.CulturaNome, opt => opt.MapFrom(src => src.Cultura != null ? src.Cultura.Nome : null))
                 .ForMember(dest => dest.PropriedadeNome, opt => opt.MapFrom(src => src.Propriedade != null ? src.Propriedade.Nome : null));

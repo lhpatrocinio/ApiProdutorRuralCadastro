@@ -21,7 +21,7 @@ public static class ResilienceExtensions
     {
         // Registra as políticas como singleton
         services.AddSingleton<ResiliencePolicyProvider>();
-        
+
         return services;
     }
 }

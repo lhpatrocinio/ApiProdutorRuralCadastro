@@ -57,8 +57,8 @@ public class TalhaoRepository : ITalhaoRepository
         return await _context.Talhoes
             .Include(t => t.Propriedade)
             .Include(t => t.Cultura)
-            .Where(t => t.Propriedade != null && 
-                        t.Propriedade.ProdutorId == produtorId && 
+            .Where(t => t.Propriedade != null &&
+                        t.Propriedade.ProdutorId == produtorId &&
                         t.Ativo)
             .OrderBy(t => t.Nome)
             .ToListAsync();

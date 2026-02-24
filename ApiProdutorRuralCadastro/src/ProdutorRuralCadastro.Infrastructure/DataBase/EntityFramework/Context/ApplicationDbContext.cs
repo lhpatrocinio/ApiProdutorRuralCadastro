@@ -43,7 +43,7 @@ namespace ProdutorRuralCadastro.Infrastructure.DataBase.EntityFramework.Context
                 entity.Property(e => e.Latitude).HasColumnType("decimal(10,8)");
                 entity.Property(e => e.Longitude).HasColumnType("decimal(11,8)");
                 entity.Property(e => e.AreaTotalHa).HasColumnType("decimal(10,2)");
-                
+
                 entity.HasIndex(e => e.ProdutorId);
             });
 

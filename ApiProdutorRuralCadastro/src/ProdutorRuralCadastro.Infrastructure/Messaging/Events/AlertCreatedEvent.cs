@@ -37,7 +37,7 @@ public static class AlertaSeveridadeMapper
     {
         var tipo = tipoAlerta?.ToLower() ?? "";
         var sev = severidade?.ToLower() ?? "";
-        
+
         return (tipo, sev) switch
         {
             ("umidade" or "umidade_solo", "media" or "média") => "Alerta - Risco de Seca",

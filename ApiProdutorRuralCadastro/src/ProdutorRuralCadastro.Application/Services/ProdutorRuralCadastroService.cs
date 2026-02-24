@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProdutorRuralCadastro.Application.Services
 {
-    public class ProdutorRuralCadastroService: IProdutorRuralCadastroService
+    public class ProdutorRuralCadastroService : IProdutorRuralCadastroService
     {
     }
 }
