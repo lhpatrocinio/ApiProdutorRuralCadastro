@@ -39,9 +39,14 @@ public class CulturaServiceTests
         var id = Guid.NewGuid();
         var cultura = new Cultura
         {
-            Id = id, Nome = "Café", Descricao = "Café arábica",
-            UmidadeIdealMin = 50, UmidadeIdealMax = 80,
-            TempIdealMin = 18, TempIdealMax = 26, Ativo = true
+            Id = id,
+            Nome = "Café",
+            Descricao = "Café arábica",
+            UmidadeIdealMin = 50,
+            UmidadeIdealMax = 80,
+            TempIdealMin = 18,
+            TempIdealMax = 26,
+            Ativo = true
         };
         _repoMock.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(cultura);
 
